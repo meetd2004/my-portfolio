@@ -5,38 +5,24 @@ import Image from "next/image";
 
 const projects = [
     {
-        title: "Solid Starters",
-        category: "Low-Code Platform",
-        description: "A proprietary low-code platform enabling creation of CMS-driven websites through GUI-based model and field creation.",
-        tech: "Next.js, Nest.js, MongoDB",
-        image: "/projects/solid-starters.png"
+        title: "BookMyChef",
+        category: "Android & Web App",
+        description: "An online chef booking application connecting users with professionals. Features real-time NoSQL cloud sync, user authentication, and a separate relational SQL-backed web platform.",
+        tech: "Kotlin, Java, Firebase, PHP, SQL",
+        image: "/projects/solid-starters.png" // Placeholder image
     },
     {
-        title: "Radix E-Commerce",
-        category: "Dynamic Platform",
-        description: "Complete e-commerce platform with dynamic CMS-driven product management and custom admin panels.",
-        tech: "React, Node.js, Microservices",
-        image: "/projects/radix.png"
-    },
-    {
-        title: "Bond Cancellation",
-        category: "Automation System",
-        description: "Business automation for import-export workflows, featuring multi-step processes and financial logic.",
-        tech: "React, Subscription Engine",
-        image: "/projects/bond-cancellation.png"
-    },
-    {
-        title: "Max Life - Mpro",
-        category: "Insurance Tech",
-        description: "Large-scale operations platform. Led two teams, migrated to microservices, and delivered 10+ major upgrades.",
-        tech: "Node.js, Microservices",
-        image: "/projects/max-life.png"
-    },
+        title: "FixMyVehicle",
+        category: "Android Application",
+        description: "A mobile platform to streamline vehicle repair requests and connect users with mechanics or service stations efficiently.",
+        tech: "Android, Java", 
+        image: "/projects/radix.png" // Placeholder image
+    }
 ];
 
 export default function Projects() {
     return (
-        <section className="relative z-20 bg-[#121212] py-32 px-4 md:px-12">
+        <section className="relative z-20 bg-transparent py-32 px-4 md:px-12">
             <div className="max-w-7xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
@@ -65,7 +51,7 @@ export default function Projects() {
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/80 to-transparent opacity-90 transition-opacity group-hover:opacity-75" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#150703] via-[#150703]/80 to-transparent opacity-90 transition-opacity group-hover:opacity-75" />
                             </div>
 
                             <div className="relative z-10 p-8 transform transition-transform duration-500 group-hover:-translate-y-2">

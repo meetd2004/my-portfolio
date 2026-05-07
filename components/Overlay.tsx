@@ -57,24 +57,24 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
     return (
         <>
             <Section
-                text="Rajesh Chityal."
-                subText="Senior Full Stack Developer"
+                text="Meet Jignesh Desai."
+                subText="BCA Student & App Developer"
                 align="center"
                 start={0.05}
                 end={0.2}
                 scrollYProgress={scrollYProgress}
             />
             <Section
-                text="5+ Years Experience."
-                subText="Specializing in React, Node.js, and Scalable Microservices."
+                text="Android & Web Dev."
+                subText="Specializing in Kotlin, Java, PHP, and Firebase."
                 align="left"
                 start={0.3}
                 end={0.45}
                 scrollYProgress={scrollYProgress}
             />
             <Section
-                text="Innovating with AI."
-                subText="Building AI Agents & Voice Assistance Systems."
+                text="Future-Ready."
+                subText="Certified in Prompt Engineering for ChatGPT."
                 align="right"
                 start={0.6}
                 end={0.75}

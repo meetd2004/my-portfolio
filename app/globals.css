@@ -6,7 +6,8 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(to bottom right, #020617, #150703, #4a1500);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
   overflow-x: hidden;
