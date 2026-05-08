@@ -31,9 +31,9 @@ const Section = ({
 
     const alignClass =
         align === "left"
-            ? "items-start text-left"
+            ? "items-center text-center md:items-start md:text-left"
             : align === "right"
-                ? "items-end text-right"
+                ? "items-center text-center md:items-end md:text-right"
                 : "items-center text-center";
 
     return (
@@ -45,7 +45,7 @@ const Section = ({
                 {text}
             </h2>
             {subText && (
-                <p className="text-xl md:text-2xl text-gray-300 mt-4 font-light tracking-wide max-w-2xl">
+                <p className="text-xl md:text-2xl text-gray-300 mt-4 font-light tracking-wide max-w-lg text-balance opacity-90">
                     {subText}
                 </p>
             )}
@@ -58,7 +58,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
         <>
             <Section
                 text="Meet Jignesh Desai."
-                subText="BCA Student & App Developer"
+                subText="Cybersecurity Student & App Developer"
                 align="center"
                 start={0.05}
                 end={0.2}
@@ -74,7 +74,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
             />
             <Section
                 text="Future-Ready."
-                subText="Certified in Prompt Engineering for ChatGPT."
+                subText="Always adapting and exploring next-generation technologies to build scalable solutions."
                 align="right"
                 start={0.6}
                 end={0.75}
