@@ -72,11 +72,11 @@ export default function Contact() {
                             </>
                         );
 
-                        const motionProps = {
+                        const motionProps: any = {
                             initial: { opacity: 0, y: 20 },
                             whileInView: { opacity: 1, y: 0 },
                             viewport: { once: false, amount: 0.1 },
-                            transition: { delay: index * 0.1, duration: 0.5, ease: "easeOut" },
+                            transition: { delay: index * 0.1, duration: 0.5, ease: "easeOut" as const },
                             whileHover: { y: -8, scale: 1.1, transition: { type: "spring", stiffness: 400, damping: 12 } },
                             className: "group flex flex-col items-center gap-3 cursor-pointer"
                         };
