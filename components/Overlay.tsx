@@ -53,9 +53,44 @@ const Section = ({
     );
 };
 
+const ScrollIndicator = ({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) => {
+    const scrollOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
+
+    return (
+        <motion.div
+            style={{ opacity: scrollOpacity }}
+            className="fixed bottom-12 left-6 md:left-12 flex flex-col items-center gap-6 pointer-events-none z-50"
+        >
+            <motion.span
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2, duration: 1, ease: "easeOut" }}
+                className="text-gray-300 text-sm tracking-[0.4em] uppercase font-mono drop-shadow-md font-medium"
+                style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+            >
+                Scroll
+            </motion.span>
+            
+            <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "120px" }}
+                transition={{ delay: 2, duration: 1, ease: "easeOut" }}
+                className="relative w-[2px] h-[120px] bg-white/20 overflow-hidden rounded-full"
+            >
+                <motion.div 
+                    animate={{ y: ["-100%", "200%"] }}
+                    transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                    className="absolute inset-0 w-full h-1/2 bg-gradient-to-b from-transparent via-cyan-400 to-transparent"
+                />
+            </motion.div>
+        </motion.div>
+    );
+};
+
 export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
     return (
         <>
+            <ScrollIndicator scrollYProgress={scrollYProgress} />
             <Section
                 text="Meet Jignesh Desai."
                 subText="Cybersecurity Student & App Developer"

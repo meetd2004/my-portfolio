@@ -43,23 +43,25 @@ export default function Education() {
         <section className="relative z-[100] bg-transparent py-32 px-4 md:px-12 border-t border-white/5">
             <div className="max-w-4xl mx-auto">
                 <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="text-5xl md:text-7xl font-bold mb-20 tracking-tighter text-white text-center"
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="text-5xl md:text-7xl font-bold mb-20 tracking-tighter text-white text-center drop-shadow-xl"
                 >
                     Education & Certifications
                 </motion.h2>
 
-                <div className="relative border-l border-white/20 ml-4 md:ml-0 md:pl-0 space-y-12">
+                <div className="relative border-l border-white/20 ml-0 pl-0 space-y-12">
                     {education.map((edu, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            className="relative pl-8 md:pl-12"
+                            transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+                            viewport={{ once: false, amount: 0.2 }}
+                            whileHover={{ x: 5, transition: { type: "spring", stiffness: 400, damping: 20 } }}
+                            className="relative pl-12 cursor-default"
                         >
                             <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
 
@@ -79,16 +81,18 @@ export default function Education() {
                                             <div key={i} className="flex flex-wrap items-center gap-3">
                                                 <span className="text-gray-300">• {cert.name}</span>
                                                 {cert.image && (
-                                                    <button 
+                                                    <motion.button 
                                                         onClick={() => setSelectedCert(cert.image)}
-                                                        className="text-xs px-4 py-1.5 bg-white/5 hover:bg-purple-500/20 text-white rounded-full transition-all border border-white/10 hover:border-purple-500/50 hover:shadow-[0_0_10px_rgba(168,85,247,0.3)] flex items-center gap-1"
+                                                        whileHover={{ scale: 1.05, transition: { type: "spring", stiffness: 400, damping: 15 } }}
+                                                        whileTap={{ scale: 0.95, transition: { type: "spring", stiffness: 400, damping: 15 } }}
+                                                        className="text-xs px-4 py-1.5 bg-white/5 hover:bg-purple-500/20 text-white rounded-full transition-colors border border-white/10 hover:border-purple-500/50 hover:shadow-[0_0_10px_rgba(168,85,247,0.3)] flex items-center gap-1"
                                                     >
                                                         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                         </svg>
                                                         View Certificate
-                                                    </button>
+                                                    </motion.button>
                                                 )}
                                             </div>
                                         ))}

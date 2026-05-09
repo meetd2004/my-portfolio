@@ -25,10 +25,11 @@ export default function Projects() {
         <section className="relative z-20 bg-transparent py-32 px-4 md:px-12">
             <div className="max-w-7xl mx-auto">
                 <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="text-5xl md:text-8xl font-bold mb-20 tracking-tighter text-white"
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="text-5xl md:text-8xl font-bold mb-20 tracking-tighter text-white drop-shadow-xl"
                 >
                     Selected Works
                 </motion.h2>
@@ -39,9 +40,10 @@ export default function Projects() {
                             key={index}
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-purple-500/10 cursor-pointer h-[500px] flex flex-col justify-end"
+                            transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+                            viewport={{ once: false, amount: 0.2 }}
+                            whileHover={{ y: -10, scale: 1.02, transition: { type: "spring", stiffness: 400, damping: 20 } }}
+                            className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm transition-colors duration-500 hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-purple-500/10 cursor-pointer h-[500px] flex flex-col justify-end"
                         >
                             {/* Image Background */}
                             <div className="absolute inset-0 z-0">
@@ -51,10 +53,10 @@ export default function Projects() {
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#150703] via-[#150703]/80 to-transparent opacity-90 transition-opacity group-hover:opacity-75" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#150703] via-[#150703]/80 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-75" />
                             </div>
 
-                            <div className="relative z-10 p-8 transform transition-transform duration-500 group-hover:-translate-y-2">
+                            <div className="relative z-10 p-8">
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     <span className="px-3 py-1 text-xs font-medium tracking-widest text-[#121212] uppercase bg-[#ededed] rounded-full shadow-lg">
                                         {project.category}

@@ -17,38 +17,28 @@ const skills = [
   { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
 ];
 
-const SkillCard = ({ skill, index, scrollYProgress }: { skill: any, index: number, scrollYProgress: any }) => {
-    const getScatterValues = (index: number) => {
-        const xPositions = [-300, 200, -400, 300, -200, 400, -350, 250, -150, 350, -250];
-        const yPositions = [-200, 300, 150, -350, 250, -150, 350, -250, 100, -400, 400];
-        const rotations = [-60, 45, -90, 60, -45, 90, -30, 75, -75, 30, -120];
-        return {
-            x: xPositions[index % xPositions.length],
-            y: yPositions[index % yPositions.length],
-            rotate: rotations[index % rotations.length]
-        };
-    };
-
-    const scatter = getScatterValues(index);
-    const x = useTransform(scrollYProgress, [0, 1], [scatter.x, 0]);
-    const y = useTransform(scrollYProgress, [0, 1], [scatter.y, 0]);
-    const rotate = useTransform(scrollYProgress, [0, 1], [scatter.rotate, 0]);
-    const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.5, 1]);
-
+const SkillCard = ({ skill, index }: { skill: any, index: number }) => {
     return (
         <motion.div
-            style={{ x, y, rotate, opacity }}
-            whileHover={{ scale: 1.1, zIndex: 30, transition: { duration: 0.2 } }}
-            className="flex flex-col items-center justify-center p-6 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md transition-colors hover:bg-white/10 hover:border-white/20 hover:shadow-xl hover:shadow-purple-500/20 z-10 cursor-pointer"
+            initial={{ opacity: 0, y: 50, scale: 0.9, rotateZ: index % 2 === 0 ? -5 : 5 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1, rotateZ: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
+            transition={{ 
+                duration: 0.5, 
+                delay: index * 0.05, 
+                ease: "easeOut"
+            }}
+            whileHover={{ scale: 1.05, y: -5, zIndex: 30, transition: { type: "spring", stiffness: 400, damping: 25 } }}
+            className="group flex flex-col items-center justify-center p-6 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md transition-colors duration-300 hover:bg-white/10 hover:border-purple-500/40 hover:shadow-[0_0_25px_rgba(168,85,247,0.3)] z-10 cursor-pointer"
         >
             <div className="w-16 h-16 mb-4 relative">
                 <img
                     src={skill.icon}
                     alt={`${skill.name} icon`}
-                    className="w-full h-full object-contain filter drop-shadow-md pointer-events-none"
+                    className="w-full h-full object-contain drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)] pointer-events-none group-hover:drop-shadow-[0_8px_8px_rgba(168,85,247,0.5)] transition-all duration-300"
                 />
             </div>
-            <span className="text-white font-medium tracking-wide">
+            <span className="text-white font-medium tracking-wide group-hover:text-purple-300 transition-colors duration-300">
                 {skill.name}
             </span>
         </motion.div>
@@ -57,10 +47,6 @@ const SkillCard = ({ skill, index, scrollYProgress }: { skill: any, index: numbe
 
 export default function Skills() {
     const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "center center"],
-    });
 
     // Mouse interaction for the background
     const mouseX = useMotionValue(0);
@@ -125,7 +111,7 @@ export default function Skills() {
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 relative">
                     {skills.map((skill, index) => (
-                        <SkillCard key={index} skill={skill} index={index} scrollYProgress={scrollYProgress} />
+                        <SkillCard key={index} skill={skill} index={index} />
                     ))}
                 </div>
             </div>
