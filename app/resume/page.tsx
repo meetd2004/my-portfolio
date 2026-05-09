@@ -52,11 +52,26 @@ export default function ResumePage() {
 
       {/* PDF Viewer */}
       <div className="flex-1 w-full h-full relative bg-zinc-900/50">
-        <iframe 
-          src="/resume.pdf" 
+        <object 
+          data="/resume.pdf" 
+          type="application/pdf" 
           className="w-full h-full border-none absolute inset-0"
-          title="Resume"
-        />
+        >
+          <div className="flex flex-col items-center justify-center w-full h-full gap-4 text-center px-4">
+            <svg className="w-16 h-16 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <p className="text-gray-400">Your browser does not support inline PDF viewing.</p>
+            <a 
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="mt-4 px-6 py-3 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 border border-cyan-500/30 rounded-full transition-all duration-300 font-medium"
+            >
+              Open PDF Directly
+            </a>
+          </div>
+        </object>
       </div>
     </div>
   );

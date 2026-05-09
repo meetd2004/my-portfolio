@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useRef } from "react";
 
 export default function Contact() {
@@ -58,29 +59,50 @@ export default function Contact() {
                 <div className="flex gap-6 md:gap-10">
                     {socials.map((social, index) => {
                         const isInternal = social.url.startsWith('/');
+                        const content = (
+                            <>
+                                <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 group-hover:text-white group-hover:bg-white/10 group-hover:border-cyan-500/50 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300">
+                                    <svg className="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                                        <path d={social.icon} />
+                                    </svg>
+                                </div>
+                                <span className="text-xs uppercase tracking-widest font-mono text-gray-500 group-hover:text-cyan-400 transition-colors duration-300">
+                                    {social.name}
+                                </span>
+                            </>
+                        );
+
+                        const motionProps = {
+                            initial: { opacity: 0, y: 20 },
+                            whileInView: { opacity: 1, y: 0 },
+                            viewport: { once: false, amount: 0.1 },
+                            transition: { delay: index * 0.1, duration: 0.5, ease: "easeOut" },
+                            whileHover: { y: -8, scale: 1.1, transition: { type: "spring", stiffness: 400, damping: 12 } },
+                            className: "group flex flex-col items-center gap-3 cursor-pointer"
+                        };
+
+                        if (isInternal) {
+                            return (
+                                <Link href={social.url} key={social.name} passHref legacyBehavior>
+                                    <motion.a {...motionProps}>
+                                        {content}
+                                    </motion.a>
+                                </Link>
+                            );
+                        }
+
                         return (
-                        <motion.a
-                            key={social.name}
-                            href={social.url}
-                            target={isInternal ? undefined : "_blank"}
-                            rel={isInternal ? undefined : "noopener noreferrer"}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: false, amount: 0.1 }}
-                            transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
-                            whileHover={{ y: -8, scale: 1.1, transition: { type: "spring", stiffness: 400, damping: 12 } }}
-                            className="group flex flex-col items-center gap-3"
-                        >
-                            <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 group-hover:text-white group-hover:bg-white/10 group-hover:border-cyan-500/50 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300">
-                                <svg className="w-7 h-7 fill-current" viewBox="0 0 24 24">
-                                    <path d={social.icon} />
-                                </svg>
-                            </div>
-                            <span className="text-xs uppercase tracking-widest font-mono text-gray-500 group-hover:text-cyan-400 transition-colors duration-300">
-                                {social.name}
-                            </span>
-                        </motion.a>
-                    )})}
+                            <motion.a
+                                key={social.name}
+                                href={social.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                {...motionProps}
+                            >
+                                {content}
+                            </motion.a>
+                        );
+                    })}
                 </div>
                 
                 {/* Copyright Footer inside Contact */}
